@@ -1,16 +1,17 @@
 var d3 = require('d3');
-var barChart = require('./bar_chart');
+var lineChart = require('./line_chart');
 
 
-var getBarChart = function (params) {
+var getLineChart = function (params) {
 
-  var chart = barChart()
+  var chart = lineChart()
     .data(params.data)
     .width(params.width)
     .height(params.height)
     .xAxisLabel(params.xAxisLabel)
     .yAxisLabel(params.yAxisLabel)
-    .barColour("#aabbee");
+    .xTicks(5)
+    .lineWidth(4);
 
 
   d3.select('body').append('div').attr('id', params.containerId).call(chart);
@@ -25,5 +26,5 @@ var getBarChart = function (params) {
 
 
 module.exports = {
-  getBarChart: getBarChart
+  getLineChart: getLineChart
 };

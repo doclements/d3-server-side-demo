@@ -23,8 +23,10 @@ var barChart = module.exports = function() {
     bottom: 40,
     left: 40
   };
+  var xTicks = 5;
   var xAxisLabel = 'Categories';
   var yAxisLabel = 'Count';
+  var barColour = "blue";
 
 
   var chart = function(container) {
@@ -36,8 +38,8 @@ var barChart = module.exports = function() {
     addBackground();
     addXAxisLabel();
     addYAxisLabel();
+    addYGridLines();
     addBarChartData();
-
 
 
 
@@ -48,7 +50,6 @@ var barChart = module.exports = function() {
       axisLabelMargin = 10;
 
     }
-
 
 
 
@@ -78,7 +79,6 @@ var barChart = module.exports = function() {
 
 
 
-
     var yScale, yAxis;
 
     function setupYAxis() {
@@ -101,7 +101,6 @@ var barChart = module.exports = function() {
 
 
 
-
     var g;
 
     function setupBarChartLayout() {
@@ -114,7 +113,6 @@ var barChart = module.exports = function() {
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     }
-
 
 
 
@@ -136,7 +134,6 @@ var barChart = module.exports = function() {
 
 
 
-
     function addYAxisLabel() {
 
       g.append('g')
@@ -155,7 +152,6 @@ var barChart = module.exports = function() {
 
 
 
-
     function addBackground() {
 
       g.append('rect')
@@ -166,7 +162,6 @@ var barChart = module.exports = function() {
         .attr('height', height - margin.top - margin.bottom);
 
     }
-
 
 
 
@@ -187,16 +182,46 @@ var barChart = module.exports = function() {
         .attr('width', xScale.rangeBand())
         .attr('height', function(d) {
           return height - margin.top - margin.bottom - yScale(d.count) - axisLabelMargin;
+        })
+        .style("fill", barColour);
+
+
+    }
+
+    function addYGridLines() {
+
+      g.selectAll("line.horizontalGrid").data(yScale.ticks(4)).enter()
+        .append("line")
+        .attr({
+          "class": "horizontalGrid grid",
+          "x1": 0,
+          "x2": width - margin.left - margin.right,
+          "y1": function(d) {
+            return yScale(d);
+          },
+          "y2": function(d) {
+            return yScale(d);
+          },
+          "fill": "none",
+          "shape-rendering": "crispEdges",
+          "stroke": "black",
+          "stroke-width": "1px"
         });
-
-
     }
 
 
   };
 
-
-
+  chart.barColour = function(value) {
+    if (!arguments.length) return barColour;
+    barColour = value;
+    return chart;
+  };
+  chart.xTicks = function(value) {
+    if (!arguments.length) return xTicks;
+    xTicks = value;
+    return chart;
+  };
 
   chart.data = function(value) {
     if (!arguments.length) return data;

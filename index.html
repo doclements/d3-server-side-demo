@@ -16,34 +16,63 @@
         shape-rendering: crispEdges;
         stroke: #ccc;
         fill: #fdfdfd;
-        stroke-width: 1px;
+        
       }
 
-      .svg-chart .bar { fill: #4682B4; }
+      /*.svg-chart .bar { fill: #4682B4; }*/
+
+      .line { fill : none;
+      stroke: black;
+     }
+      .axis path {
+
+    fill:           none;
+}
+.grid {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+.grid path {
+      stroke-width: 0;
+}
     </style>
 
   </head>
   <body>
     <h1>D3 Server-side Demo</h1>
     <%-
-      barChartHelper.getBarChart({
+      lineChartHelper.getLineChart({
         data: fixtureData,
-        width: 400,
+        width: 600,
         height: 300,
         xAxisLabel: '2012',
-        yAxisLabel: 'Views',
-        containerId: 'bar-chart-small'
+        yAxisLabel: 'Veeeiews',
+        containerId: 'line-chart-small'
       })
     %>
     <hr>
+   
     <%-
       barChartHelper.getBarChart({
-        data: fixtureData,
-        width: 800,
+        data: barData,
+        width: 600,
+        height: 300,
+        xAxisLabel: '2012',
+        yAxisLabel: 'Veeeiews',
+        containerId: 'bar-chart-small',
+
+      })
+    %>
+     <hr>
+   
+    <%-
+      scatterChartHelper.getScatterChart({
+        data: scatterData,
+        width: 1200,
         height: 600,
         xAxisLabel: '2012',
-        yAxisLabel: 'Views',
-        containerId: 'bar-chart-large'
+        yAxisLabel: 'Veeeiews',
+        containerId: 'scatter-chart-small'
       })
     %>
   </body>

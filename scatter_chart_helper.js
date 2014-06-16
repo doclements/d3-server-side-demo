@@ -1,16 +1,15 @@
 var d3 = require('d3');
-var barChart = require('./bar_chart');
+var scatterChart = require('./scatter_plot');
 
 
-var getBarChart = function (params) {
+var getScatterChart = function (params) {
 
-  var chart = barChart()
+  var chart = scatterChart()
     .data(params.data)
     .width(params.width)
     .height(params.height)
     .xAxisLabel(params.xAxisLabel)
-    .yAxisLabel(params.yAxisLabel)
-    .barColour("#aabbee");
+    .yAxisLabel(params.yAxisLabel);
 
 
   d3.select('body').append('div').attr('id', params.containerId).call(chart);
@@ -25,5 +24,5 @@ var getBarChart = function (params) {
 
 
 module.exports = {
-  getBarChart: getBarChart
+  getScatterChart: getScatterChart
 };
