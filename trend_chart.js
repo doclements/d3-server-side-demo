@@ -26,11 +26,34 @@ var trendChart = module.exports = function() {
    var xAxisLabel = 'Time';
    var yAxisLabel = 'Count';
    var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%SZ").parse;
+   var blockGutter = 1;
+   var blockSize = 8;
+   var rows = 7;
 
 
    var chart = function(container) {
 
+      var xScale, yScale, colourScale, axisLabelMargin, xAxis, yAxis, blocks, g;
 
+      setDimensions();
+
+      function setDimensions() {
+         axisLabelMargin = 10;
+      }
+
+      function processData(data) {
+         rows = data.rows || rows;
+         var cols = Math.ceil(data.data.length / rows);
+         var _rows = [];
+         console.log(cols);
+         for(i=0;i<cols;i++){
+            _rows[i] = [];
+            for(x=0;x<rows;x++){
+               _rows[i].push(data.data[i+(x*cols)]);
+            }
+         }
+         return _rows;
+      }
 
    };
 
@@ -74,6 +97,18 @@ var trendChart = module.exports = function() {
    chart.xAxisLabel = function(value) {
       if (!arguments.length) return xAxisLabel;
       xAxisLabel = value;
+      return chart;
+   };
+
+   chart.blockSize = function(value) {
+      if (!arguments.length) return blockSize;
+      blockSize = value;
+      return chart;
+   };
+
+   chart.blockGutter = function(value) {
+      if (!arguments.length) return blockGutter;
+      blockGutter = value;
       return chart;
    };
    return chart;
