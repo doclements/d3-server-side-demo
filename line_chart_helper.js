@@ -11,7 +11,7 @@ var getLineChart = function (params) {
     .xAxisLabel(params.xAxisLabel)
     .yAxisLabel(params.yAxisLabel)
     .xTicks(5)
-    .lineWidth(4);
+    .lineWidth(1);
 
 
   d3.select('body').append('div').attr('id', params.containerId).call(chart);
