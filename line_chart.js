@@ -90,8 +90,12 @@ var lineChart = module.exports = function() {
       function setupLineChartLayout() {
          g = container.append('svg')
             .attr('class', 'svg-chart')
-            .attr('width', width)
-            .attr('height', height)
+            // .attr("width", "100%")
+            // .attr("height", "100%")
+            .style("width", "100%")
+            .style("height", "100%")
+            .attr("viewBox", "0 0 600 300")
+            //.attr("preserverAspectRatio", "none")
             .append('g')
             .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
       }
