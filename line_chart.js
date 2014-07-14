@@ -15,8 +15,8 @@ var lineChart = module.exports = function() {
 
 
    // default values for configurable input parameters
-   var width = 400;
-   var height = 300;
+   var width = 800;
+   var height = 500;
    var margin = {
       top: 10,
       right: 10,
@@ -92,8 +92,8 @@ var lineChart = module.exports = function() {
             .attr('class', 'svg-chart')
             // .attr("width", "100%")
             // .attr("height", "100%")
-            .style("width", "50%")
-            .style("height", "50%")
+            .style("width", "90%")
+            .style("height", "90%")
             .attr("viewBox", "0 0 600 300")
             //.attr("preserverAspectRatio", "none")
             .append('g')
